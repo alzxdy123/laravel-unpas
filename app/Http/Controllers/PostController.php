@@ -20,6 +20,7 @@ class PostController extends Controller
     public function findPost(Post $post) {
         return view('SinglePost', [
             'title' => 'Single Post',
+            'active' => 'post',
             'post' => $post
         ]);
     }
