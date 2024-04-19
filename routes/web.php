@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/Posts', [PostController::class, 'allPost']);
 Route::get('/Posts/{post:slug}', [PostController::class, 'findPost']);
 
-Route::get('/categories', function() {
+Route::get('/Categories', function() {
     return view('Categories', [
         'title' => 'Categories',
         'active' => 'categories',
