@@ -13,7 +13,7 @@ class PostController extends Controller
         return view('/Posts', [
             'title' => "Halaman Post",
             'active' => 'post',
-            'posts' => Post::all()
+            'posts' => Post::with(['user', 'category'])->latest()->get()
         ]);
     }
 
@@ -23,5 +23,10 @@ class PostController extends Controller
             'active' => 'post',
             'post' => $post
         ]);
+    }
+
+    public function apiPost() {
+        $posts = Post::all();
+        return response()->json($posts);
     }
 }
