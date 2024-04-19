@@ -20,7 +20,7 @@ class PostFactory extends Factory
             'title' => fake()->sentence(mt_rand(1,4)),
             'slug' => fake()->unique()->slug(),
             'exerpt' => fake()->paragraph(mt_rand(1,5)),
-            'body' => fake()->paragraph(mt_rand(10,25)),
+            'body' => collect(fake()->paragraphs(mt_rand(10,25)))->map(fn($p) => "<p>$p</p>")->implode(''),
             'published_at' => now(),
             'user_id' => mt_rand(1,5),
             'category_id' => mt_rand(1,3)

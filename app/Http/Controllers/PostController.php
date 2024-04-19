@@ -13,7 +13,7 @@ class PostController extends Controller
         return view('/Posts', [
             'title' => "Halaman Post",
             'active' => 'post',
-            'posts' => Post::with(['user', 'category'])->latest()->get()
+            'posts' => Post::latest()->get()
         ]);
     }
 
