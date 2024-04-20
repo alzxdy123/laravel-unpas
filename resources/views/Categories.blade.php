@@ -3,7 +3,7 @@
 @section('content')
     <ul>
         @foreach ($categories as $category)
-            <li>{{ $category->name }}</li>
+            <li><a href="/Posts?category={{ $category->slug }}">{{ $category->name }}</a></li>
         @endforeach
     </ul>
 @endsection
