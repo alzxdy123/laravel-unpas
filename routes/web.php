@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\registerController;
@@ -35,12 +36,6 @@ Route::get('/Categories', function() {
     ]);
 });
 
-Route::get('/login', [loginController::class, 'index']);
-Route::post('/login', [loginController::class, 'authenticate']);
-
-Route::get('/register', [registerController::class, 'index']);
-Route::post('/register', [registerController::class, 'store']);
-
 // Route::get('/categories/{category:slug}', function(Category $category) {
 //     return view('Posts', [
 //         "title" => 'Post in ' . $category->name,
@@ -56,3 +51,13 @@ Route::post('/register', [registerController::class, 'store']);
 //         'posts' => $author->posts->load('category', 'user')
 //     ]);
 // });
+
+Route::get('/login', [loginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [loginController::class, 'authenticate']);
+Route::post('/logout', [loginController::class, 'logout']);
+
+Route::get('/register', [registerController::class, 'index'])->middleware('guest');
+Route::post('/register', [registerController::class, 'store']);
+
+Route::get('/dashboard', [dashboardController::class, 'index'])->middleware('auth');
+
