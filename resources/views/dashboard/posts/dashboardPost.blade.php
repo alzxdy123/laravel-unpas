@@ -9,6 +9,8 @@
 
 <div class="row justify-content-center">
     <div class="table-responsive small col-md-10">
+    <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new post</a>
+
         <table class="table table-striped table-sm">
           <thead>
             <tr>
