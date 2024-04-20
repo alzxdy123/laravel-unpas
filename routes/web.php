@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\registerController;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -33,18 +35,22 @@ Route::get('/Categories', function() {
     ]);
 });
 
-Route::get('/categories/{category:slug}', function(Category $category) {
-    return view('Posts', [
-        "title" => 'Post in ' . $category->name,
-        'active' => "post",
-        "posts" => $category->posts->load('category', 'user')
-    ]);
-});
+Route::get('/login', [loginController::class, 'index']);
+Route::get('/register', [registerController::class, 'index']);
+Route::post('/register', [registerController::class, 'store']);
 
-Route::get('/author/{author:id}', function(User $author) {
-    return view('Posts', [
-        "title" => 'Post By ' . $author->name,
-        'active' => "post",
-        'posts' => $author->posts->load('category', 'user')
-    ]);
-});
+// Route::get('/categories/{category:slug}', function(Category $category) {
+//     return view('Posts', [
+//         "title" => 'Post in ' . $category->name,
+//         'active' => "post",
+//         "posts" => $category->posts->load('category', 'user')
+//     ]);
+// });
+
+// Route::get('/author/{author:id}', function(User $author) {
+//     return view('Posts', [
+//         "title" => 'Post By ' . $author->name,
+//         'active' => "post",
+//         'posts' => $author->posts->load('category', 'user')
+//     ]);
+// });
