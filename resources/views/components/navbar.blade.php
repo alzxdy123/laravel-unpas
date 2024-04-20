@@ -27,7 +27,8 @@
               <li>
                 <form action="/logout" method="POST">
                   @csrf
-                  <button class="dropdown-item" type="submit">Log Out</button></form>
+                  <button class="dropdown-item" type="submit">Log Out</button>
+                </form>
               </li>
             </ul>
           </li>
