@@ -36,6 +36,8 @@ Route::get('/Categories', function() {
 });
 
 Route::get('/login', [loginController::class, 'index']);
+Route::post('/login', [loginController::class, 'authenticate']);
+
 Route::get('/register', [registerController::class, 'index']);
 Route::post('/register', [registerController::class, 'store']);
 
