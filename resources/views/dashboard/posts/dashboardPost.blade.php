@@ -32,8 +32,12 @@
                 <th>{{ $post->body }}</th> --}}
                 <td>
                     <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info text-decoration-none">Details</a>
-                    <a href="/dashboard/posts/details" class="badge bg-warning text-decoration-none">Edit</a>
-                    <a href="/dashboard/posts/details" class="badge bg-danger text-decoration-none">Delete</a>
+                    <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning text-decoration-none">Edit</a>
+                    <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
+                      @csrf
+                      @method('delete')
+                      <button class="border-0 badge bg-danger" onclick="return confirm('are you sure')">Delete</button>
+                    </form>
                 </th>
             </tr>
             @endforeach

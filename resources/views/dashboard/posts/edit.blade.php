@@ -6,11 +6,12 @@
     </div>
 
     <div class="col-lg-10">
-        <form action="/dashboard/posts" method="POST">
+        <form action="/dashboard/posts/{{ $post->slug }}" method="POST">
+          @method('put')
             @csrf
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input value="{{ old('title') }}" type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title">
+              <input value="{{ old('title', $post->title) }}" type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title">
               <div class="invalid-feedback">
                 @error('title')
                     {{ $message }}
@@ -19,7 +20,7 @@
             </div>
             <div class="mb-3">
               <label for="slug" class="form-label">Slug</label>
-              <input value="{{ old('slug') }}" type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug">
+              <input value="{{ old('slug', $post->slug) }}" type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug">
               <div class="invalid-feedback">
                 @error('slug')
                     {{ $message }}
@@ -30,7 +31,7 @@
               <label for="category" class="form-label">Category</label>
               <select class="form-select" name="category_id">
                 @foreach ($categories as $c)
-                  @if (old('category_id') == $c->id)
+                  @if (old('category_id',$post->category_id) == $c->id)
                     <option value="{{ $c->id }}" selected>{{ $c->name }}</option>
                   @else   
                     <option value="{{ $c->id }}">{{ $c->name }}</option>
@@ -45,10 +46,10 @@
                       {{ $message }}
                   @enderror
                 </div>
-                <input id="body" value="{{ old('body') }}" type="hidden" name="body">
+                <input id="body" value="{{ old('body', $post->body) }}" type="hidden" name="body">
                 <trix-editor input="body"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-primary">Create post</button>
+            <button type="submit" class="btn btn-primary">update post</button>
             <a href="/dashboard/posts" class="btn btn-danger">Back</a>
           </form>
     </div>
